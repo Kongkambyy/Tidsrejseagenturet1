@@ -1,60 +1,34 @@
 package com.example.tidsrejseagenturet.Controller;
 
 import com.example.tidsrejseagenturet.Model.Customer;
-import com.example.tidsrejseagenturet.Model.DatabaseConnection;
+import com.example.tidsrejseagenturet.Model.DatabaseHandler;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.List;
 
 public class CustomerController {
-    private int nextId = 1;
+    private final DatabaseHandler dbHandler;
 
-    // Opret en ny kunde
+    public CustomerController() {
+        this.dbHandler = new DatabaseHandler();
+    }
+
     public Customer createCustomer(String name, String email) {
-        String sql = "INSERT INTO customer (name, email) VALUES (?, ?)";
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
-
-            stmt.setString(1, name);
-            stmt.setString(2, email);
-            int affectedRows = stmt.executeUpdate();
-            if (affectedRows == 0) {
-                throw new SQLException("Customer creation failed");
-            }
-            try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
-                if (generatedKeys.next()) {
-                    int id = generatedKeys.getInt(1);
-                    return new Customer(id, name, email);
-                } else {
-                    throw new SQLException("Customer creation failed");
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return dbHandler.createCustomerInDB(name, email);
     }
 
     public Customer login(String email, String password) {
-        String sql = "SELECT * FROM customer WHERE email = ? AND password = ?";
-        try (Connection conn = DatabaseConnection.getConnection();
-        PreparedStatement statement = conn.prepareStatement(sql)) {
+        return dbHandler.loginCustomer(email, password);
+    }
 
-            statement.setString(1,email);
-            statement.setString(2,password);
-            try(ResultSet resultSet = statement.executeQuery()) {
-                if (resultSet.next()) {
-                    int id = resultSet.getInt("id");
-                    String name = resultSet.getString("name");
+    public boolean deleteCustomer(int id) {
+        return dbHandler.deleteCustomerFromDB(id);
+    }
 
-                    return new Customer(id, name, email);
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
+    public List<Customer> getAllCustomers() {
+        return dbHandler.getAllCustomersFromDB();
+    }
+
+    public boolean editCustomer(int id, String name, String email) {
+        return dbHandler.editCustomerInDB(id, name, email);
     }
 }

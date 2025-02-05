@@ -1,66 +1,35 @@
 package com.example.tidsrejseagenturet.Model;
 
 public class Customer {
-    private int id;
+    private Integer id;  // Changed to Integer to allow null for new customers
     private String name;
     private String email;
-    private String password; // Nyt felt til login
 
-    // Constructor med password - bruges fx ved oprettelse
-    public Customer(int id, String name, String email) {
+    // Constructor for new customers (before database insertion)
+    public Customer(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
+
+    // Constructor for existing customers (after database retrieval)
+    public Customer(Integer id, String name, String email) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.password = password;
     }
 
-    // Alternativ constructor uden id (f.eks. før id'et er genereret)
-    public Customer(String name, String email, String password) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-    }
+    // Getters
+    public Integer getId() { return id; }
+    public String getName() { return name; }
+    public String getEmail() { return email; }
 
-    // Getters og Setters
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    // Setters
+    public void setId(Integer id) { this.id = id; }
+    public void setName(String name) { this.name = name; }
+    public void setEmail(String email) { this.email = email; }
 
     @Override
     public String toString() {
-        // Bemærk: Du behøver typisk ikke at vise password i en toString()-metode
-        return "Customer{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+        return "Kunde [ID=" + id + ", navn=" + name + ", email=" + email + "]";
     }
 }

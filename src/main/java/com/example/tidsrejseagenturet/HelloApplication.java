@@ -11,7 +11,7 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         // Sørg for, at stien er korrekt – f.eks. hvis FXML-filen ligger i resources-mappen
-        Parent root = FXMLLoader.load(getClass().getResource("/com/example/tidsrejseagenturet/view/hello-view.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/com/example/tidsrejseagenturet/hello-view.fxml"));
         Scene scene = new Scene(root);
         stage.setTitle("Tidsrejseagenturet");
         stage.setScene(scene);
