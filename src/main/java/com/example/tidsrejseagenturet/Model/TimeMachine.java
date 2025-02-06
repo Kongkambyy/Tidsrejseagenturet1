@@ -6,14 +6,12 @@ public class TimeMachine {
     private int capacity;
     private boolean available;
 
-    // Constructor for new machines (before database insertion)
     public TimeMachine(String name, int capacity, boolean available) {
         this.name = name;
         this.capacity = capacity;
         this.available = available;
     }
 
-    // Constructor for existing machines (after database retrieval)
     public TimeMachine(Integer id, String name, int capacity, boolean available) {
         this.id = id;
         this.name = name;

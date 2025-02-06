@@ -1,17 +1,15 @@
 package com.example.tidsrejseagenturet.Model;
 
 public class Customer {
-    private Integer id;  // Changed to Integer to allow null for new customers
+    private Integer id;
     private String name;
     private String email;
 
-    // Constructor for new customers (before database insertion)
     public Customer(String name, String email) {
         this.name = name;
         this.email = email;
     }
 
-    // Constructor for existing customers (after database retrieval)
     public Customer(Integer id, String name, String email) {
         this.id = id;
         this.name = name;

@@ -22,7 +22,7 @@ public class DatabaseHandler {
             try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     int id = generatedKeys.getInt(1);
-                    return new Customer(id, name, email);  // Create customer with generated ID
+                    return new Customer(id, name, email);
                 } else {
                     throw new SQLException("Creating customer failed");
                 }
