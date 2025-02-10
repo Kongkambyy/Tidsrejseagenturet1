@@ -1,15 +1,15 @@
 package com.example.tidsrejseagenturet.Controller;
 
 import com.example.tidsrejseagenturet.Model.Customer;
-import com.example.tidsrejseagenturet.Model.DatabaseHandler;
+import com.example.tidsrejseagenturet.Model.CustomerDatabaseHandler;
 
 import java.util.List;
 
 public class CustomerController {
-    private final DatabaseHandler dbHandler;
+    private final CustomerDatabaseHandler dbHandler;
 
     public CustomerController() {
-        this.dbHandler = new DatabaseHandler();
+        this.dbHandler = new CustomerDatabaseHandler();
     }
 
     public Customer createCustomer(String name, String email) {

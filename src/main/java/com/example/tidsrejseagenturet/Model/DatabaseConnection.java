@@ -8,13 +8,13 @@ import java.util.ArrayList;
 public class DatabaseConnection {
     // Konstant, der indeholder URL'en til databasen.
     // JDBC URL format: jdbc:mysql://[host]:[port]/[database]
-    private static final String URL = "jdbc:mysql://localhost:3306/gaming";
+    private static final String URL = "jdbc:mysql://lasseblunckshillerx.tplinkdns.com:3306/tidsrejse";
 
     // MySQL-brugernavn. Skal matche brugernavnet på din database.
-    private static final String USER = "root";
+    private static final String USER = "ZealandGruppen";
 
     // MySQL-adgangskode. Sørg for at holde denne sikker og ikke dele den offentligt.
-    private static final String PASSWORD = "root";
+    private static final String PASSWORD = "KunForZealand";
 
     // Denne metode opretter forbindelse til databasen og returnerer et Connection-objekt.
     public static Connection getConnection() {

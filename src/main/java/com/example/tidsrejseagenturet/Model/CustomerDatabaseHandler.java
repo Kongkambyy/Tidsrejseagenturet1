@@ -4,10 +4,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DatabaseHandler {
+public class CustomerDatabaseHandler {
 
     public Customer createCustomerInDB(String name, String email) {
-        String sql = "INSERT INTO customer (name, email) VALUES (?, ?)";
+        String sql = "INSERT INTO customers (name, email) VALUES (?, ?)";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
@@ -34,7 +34,7 @@ public class DatabaseHandler {
     }
 
     public Customer loginCustomer(String email, String password) {
-        String sql = "SELECT * FROM customer WHERE email = ? AND password = ?";
+        String sql = "SELECT * FROM customers WHERE email = ? AND password = ?";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement statement = conn.prepareStatement(sql)) {
 
@@ -56,7 +56,7 @@ public class DatabaseHandler {
     }
 
     public boolean deleteCustomerFromDB(int id) {
-        String sql = "DELETE FROM customer WHERE id = ?";
+        String sql = "DELETE FROM customers WHERE id = ?";
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
@@ -71,7 +71,7 @@ public class DatabaseHandler {
 
     public List<Customer> getAllCustomersFromDB() {
         List<Customer> customers = new ArrayList<>();
-        String sql = "SELECT * FROM customer";
+        String sql = "SELECT * FROM customers";
         try (Connection connection = DatabaseConnection.getConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sql)) {
@@ -90,7 +90,7 @@ public class DatabaseHandler {
     }
 
     public boolean editCustomerInDB(int id, String name, String email) {
-        String sql = "UPDATE customer SET name = ?, email = ? WHERE id = ?";
+        String sql = "UPDATE customers SET name = ?, email = ? WHERE id = ?";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement statement = conn.prepareStatement(sql)) {
 

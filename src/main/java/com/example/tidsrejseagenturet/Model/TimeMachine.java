@@ -26,7 +26,7 @@ public class TimeMachine {
     public boolean isAvailable() { return available; }
 
     // Setters
-    public void setId(Integer id) { this.id = id; }
+    public void setId(Integer id) {this.id = id; }
     public void setName(String name) { this.name = name; }
     public void setCapacity(int capacity) { this.capacity = capacity; }
     public void setAvailable(boolean available) { this.available = available; }
