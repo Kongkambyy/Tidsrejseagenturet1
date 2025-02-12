@@ -33,28 +33,6 @@ public class CustomerDatabaseHandler {
         }
     }
 
-    public Customer loginCustomer(String email, String password) {
-        String sql = "SELECT * FROM customers WHERE email = ? AND password = ?";
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement statement = conn.prepareStatement(sql)) {
-
-            statement.setString(1, email);
-            statement.setString(2, password);
-            try(ResultSet resultSet = statement.executeQuery()) {
-                if (resultSet.next()) {
-                    return new Customer(
-                            resultSet.getInt("id"),
-                            resultSet.getString("name"),
-                            resultSet.getString("email")
-                    );
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
     public boolean deleteCustomerFromDB(int id) {
         String sql = "DELETE FROM customers WHERE id = ?";
         try (Connection connection = DatabaseConnection.getConnection();

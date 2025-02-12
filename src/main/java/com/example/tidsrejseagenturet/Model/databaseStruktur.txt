@@ -1,0 +1,72 @@
+CREATE DATABASE tidsRejse;
+
+USE tidsRejse;
+
+CREATE TABLE customers (
+id INT NOT NULL AUTO_INCREMENT,
+name VARCHAR(50) NOT NULL,
+eMail VARCHAR(75) NOT NULL,
+PRIMARY KEY (id)
+);
+
+CREATE TABLE time_Machines (
+id INT NOT NULL AUTO_INCREMENT,
+name VARCHAR(50) NOT NULL,
+capacity INT NOT NULL,
+status BOOLEAN NOT NULL,
+PRIMARY KEY (id)
+);
+
+CREATE TABLE time_periods (
+id INT NOT NULL AUTO_INCREMENT,
+name VARCHAR(50) NOT NULL,
+description VARCHAR(500) NOT NULL,
+PRIMARY KEY (id)
+);
+
+CREATE TABLE guides (
+id INT NOT NULL AUTO_INCREMENT,
+name VARCHAR(50) NOT NULL,
+specialty VARCHAR(50) NOT NULL,
+PRIMARY KEY (id)
+);
+
+CREATE TABLE bookings (
+id INT NOT NULL AUTO_INCREMENT,
+customer_id INT NOT NULL,
+time_machine_id INT NOT NULL,
+time_period_id INT NOT NULL,
+guide_id INT NOT NULL,
+PRIMARY KEY (id),
+FOREIGN KEY (customer_id) REFERENCES customers(id) ON DELETE CASCADE,
+FOREIGN KEY (time_machine_id) REFERENCES time_Machines(id) ON DELETE CASCADE,
+FOREIGN KEY (time_period_id) REFERENCES time_periods(id) ON DELETE CASCADE,
+FOREIGN KEY (guide_id) REFERENCES guides(id) ON DELETE CASCADE
+);
+
+
+/* ON DELETE CASCADE
+Hvis man sletter en kunde med f.eks id 01, så sletter den også bookinger tilknyttet.
+Hvis man sletter en Time_Machine så slettes bookingerne der er tilknyttet til den.
+OSV OSV
+/
+
+/ foreing key:
+forbinder  id melle de forskellige tables.
+man kan ikke oprette booking hvis der ikke findes custier_id, time_machine_id osv osv.
+Det sikre bare at det F.eks guide_id man skiver i bookingen rent faktisk findes.
+/
+
+/ REFERENCES:
+ bruges i SQL til at oprette foreign keys , der forbinder en kolonne i
+ én tabel til en primær nøgle i en anden tabel. Dette sikrer referentiel integritet,
+ så der ikke kan indsættes ugyldige data.
+/
+
+/
+ Selvom FOREIGN KEY og REFERENCES ofte bruges sammen, er der en forskel:
+ Normalt bruges FOREIGN KEY og REFERENCES i samme sætning for at skabe relationer mellem
+ tabeller.
+
+ De skal i MSQL bruges sammen for at virke.
+*/

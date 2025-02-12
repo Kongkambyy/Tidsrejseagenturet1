@@ -1,26 +1,26 @@
 package com.example.tidsrejseagenturet;
 
-import com.example.tidsrejseagenturet.Model.CustomerDatabaseHandler;
+import com.example.tidsrejseagenturet.Model.GuideDatabaseHandler;
+import com.example.tidsrejseagenturet.Model.TimeMachineDatabaseHandler;
+import com.example.tidsrejseagenturet.Model.TimePeriods;
+import com.example.tidsrejseagenturet.Model.TimePeriodsDatabaseHandler;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import java.io.IOException;
 
 public class HelloApplication extends Application {
-
     @Override
-    public void start(Stage stage) throws Exception {
-        // Sørg for, at stien er korrekt – f.eks. hvis FXML-filen ligger i resources-mappen
-        Parent root = FXMLLoader.load(getClass().getResource("/com/example/tidsrejseagenturet/hello-view.fxml"));
-        Scene scene = new Scene(root);
+    public void start(Stage stage) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("mainMenu.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Tidsrejseagenturet");
         stage.setScene(scene);
         stage.show();
     }
 
     public static void main(String[] args) {
-        CustomerDatabaseHandler db = new CustomerDatabaseHandler();
-        System.out.println(db.deleteCustomerFromDB(3));
+        launch(args);
     }
 }

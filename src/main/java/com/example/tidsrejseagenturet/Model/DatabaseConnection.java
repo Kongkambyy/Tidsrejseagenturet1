@@ -27,12 +27,4 @@ public class DatabaseConnection {
             return null; // Returner null, hvis forbindelsen mislykkes.
         }
     }
-
-    public void updateUserData(){
-
-    }
-    public void deleteUserData(){
-
-    }
-
 }
