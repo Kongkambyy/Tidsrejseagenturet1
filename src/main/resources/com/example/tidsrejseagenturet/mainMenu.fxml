@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.tidsrejseagenturet.View.MainMenuController"
+            prefHeight="499.0" prefWidth="600.0">
+    <children>
+        <Label alignment="CENTER" layoutX="200.0" layoutY="42.0" prefHeight="17.0" prefWidth="201.0" text="TIDSREJESAGENTURET" />
+
+        <Button fx:id="customerAdminButton" layoutX="200.0" layoutY="100.0" mnemonicParsing="false"
+                onAction="#handleCustomerAdmin" prefWidth="200.0" text="KUNDE ADMINISTRATION" />
+        <Button fx:id="timeMachineButton" layoutX="200.0" layoutY="150.0" mnemonicParsing="false"
+                onAction="#handleTimeMachines" prefWidth="200.0" text="TIDSREJSEMASKINER" />
+        <Button fx:id="timePeriodsButton" layoutX="200.0" layoutY="200.0" mnemonicParsing="false"
+                onAction="#handleTimePeriods" prefWidth="200.0" text="TIDSPERIODER" />
+        <Button fx:id="bookingButton" layoutX="200.0" layoutY="250.0" mnemonicParsing="false"
+                onAction="#handleBooking" prefWidth="200.0" text="BOOK TIDSREJSE" />
+
+        <Button fx:id="exitButton" layoutX="270.0" layoutY="400.0" mnemonicParsing="false"
+                onAction="#handleExit" text="AFSLUT" />
+    </children>
+</AnchorPane>
